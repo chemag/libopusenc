@@ -920,6 +920,9 @@ int ope_encoder_flush_header(OggOpusEnc *enc) {
   return OPE_OK;
 }
 
+#define OPUS_SET_FORCE_MODE_REQUEST    11002
+#define OPUS_SET_FORCE_MODE(x) OPUS_SET_FORCE_MODE_REQUEST, __opus_check_int(x)
+
 /* Goes straight to the libopus ctl() functions. */
 int ope_encoder_ctl(OggOpusEnc *enc, int request, ...) {
   int ret;
@@ -940,6 +943,7 @@ int ope_encoder_ctl(OggOpusEnc *enc, int request, ...) {
     case OPUS_SET_DTX_REQUEST:
     case OPUS_SET_VBR_CONSTRAINT_REQUEST:
     case OPUS_SET_FORCE_CHANNELS_REQUEST:
+    case OPUS_SET_FORCE_MODE_REQUEST:
     case OPUS_SET_SIGNAL_REQUEST:
     case OPUS_SET_LSB_DEPTH_REQUEST:
     case OPUS_SET_PREDICTION_DISABLED_REQUEST:
